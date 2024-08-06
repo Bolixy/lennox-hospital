@@ -1,0 +1,10 @@
+While still in development, run:
+
+```shell
+npm install
+```
+then you run:
+
+```shell
+npx tailwindcss -i ./styles/tailwindInput.css -o ./styles/tailwindOutput.css --watch
+```

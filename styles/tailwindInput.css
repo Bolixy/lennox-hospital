@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.main-doc{
+  @apply flex absolute h-screen w-[100%] max-md:block max-w-[100%]
+}
+
+.side-panel{
+  @apply border-red-200 w-[20%] bg-[#f0eff4] max-md:w-[100%];
+}
+
+#nav{
+  animation: leftFadeIn .5s ease-in-out;
+}
+
+.right-side{
+  @apply border-red-200 w-[80%] max-md:w-[100%] bg-[#ffffff]
+}
+
+#toggle:checked ~ div#nav{
+  @apply max-md:block
+}
+
+#toggle:checked ~ h3 p label{
+  @apply text-red-400
+}
+
+#toggle:checked ~ h3 p label.close{
+  @apply block font-bold
+}
+
+#toggle:checked ~ h3 p label.open{
+  @apply hidden
+}
+
+.upFadeIn{
+  animation: upFadeIn 2s ease-in-out;
+}
+
+@keyframes leftFadeIn{
+  0%{
+    @apply ml-[-100px] opacity-0;
+  }
+}
+
+@keyframes upFadeIn{
+  0%{
+    @apply mt-[300px] opacity-0;
+  }
+}
