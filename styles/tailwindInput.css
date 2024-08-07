@@ -8,7 +8,7 @@
 }
 
 .side-panel{
-  @apply border-red-200 w-[20%] bg-[#f0eff4] max-md:w-[100%];
+  @apply border-red-200 w-[20%] bg-[#f0eff4] max-md:w-[100%] md:fixed md:h-screen;
 }
 
 #nav{
@@ -16,7 +16,7 @@
 }
 
 .right-side{
-  @apply border-red-200 w-[80%] max-md:w-[100%] bg-[#ffffff]
+  @apply border-red-200 w-[80%] max-md:w-[100%] bg-[#ffffff] md:fixed md:left-[20%] md:h-screen md:overflow-auto
 }
 
 #toggle:checked ~ div#nav{
@@ -39,6 +39,18 @@
   animation: upFadeIn 2s ease-in-out;
 }
 
+thead, tbody, th, tr, td{
+  @apply border
+}
+
+td{
+  @apply py-2 px-1
+}
+
+tr:nth-child(even){
+  @apply bg-gray-100 text-gray-600
+}
+
 @keyframes leftFadeIn{
   0%{
     @apply ml-[-100px] opacity-0;
@@ -49,4 +61,8 @@
   0%{
     @apply mt-[300px] opacity-0;
   }
+}
+
+.tableme::-webkit-scrollbar-track{
+  @apply hidden
 }

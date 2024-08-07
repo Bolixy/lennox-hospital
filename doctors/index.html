@@ -21,25 +21,28 @@
 
       <div class="bg-white max-md:hidden" id="nav">
         <!-- Nav lists -->
-         <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="">Dashboard</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="#history">Appointment History</a></p></div>
+         <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./">Dashboard</a></p></div>
+         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="./history.html">Appointment History</a></p></div>
+         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="">Logout</a></p></div>
       </div>
     </div>
 
     <div class="right-side">
      <div class="bg-[#fafafa] w-[100%] h-[100px] border-b-2 flex items-center uppercase px-5 font-medium text-[30px] max-md:text-[25px] text-[#818181] max-md:justify-center">Doctor | Dashboard</div>
 
+     <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden">Logout &rArr;</div>
+
      <div class="flex justify-evenly items-center mx-3 my-2 sm:space-x-3 max-sm:block max-sm:space-y-4 mt-5 upFadeIn">
-      <div class="border border-gray-300 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
+      <div class="border border-gray-300 shadow-gray-600 hover:shadow-md duration-200 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
         <i class="fa-circle bg-[#0079ff] text-[#f1f1f1]">fgy</i>
         <h3 class="font-normal text-lg"></h3>My Profile</h3>
         <p class="text-[#0079ff] font-medium"><a href="#profle/update">Update Profile</a></p>
       </div>
 
-      <div class="border border-gray-300 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
+      <div class="border border-gray-300 shadow-gray-600 hover:shadow-md duration-200 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
         <i class="fa-circle bg-[#0079ff] text-[#f1f1f1]">war</i>
         <h3 class="font-normal text-lg">My Appointments</h3>
-        <p class="text-[#0079ff] font-medium"><a href="#history">View Appointment History</a></p>
+        <p class="text-[#0079ff] font-medium"><a href="./history.html">View Appointment History</a></p>
       </div>
      </div>
     </div>
