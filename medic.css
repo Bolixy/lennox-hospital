@@ -42,13 +42,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 100px;
+    gap: 70px;
     font-size: large;
     list-style: none;
     cursor: pointer;
     color: grey;
 }
-
+.logo{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    background: url(./unilag\ logo.png);
+    background-size: cover;
+    background-position: center;
+}
 .med{
     color:blue;
 }
@@ -83,6 +93,12 @@ button{
 }
 button:hover{
     background-color:blue;
+    color: white;
+}
+button a{
+    text-decoration:none ;
+}
+button a:hover{
     color: white;
 }
 .fa-mobile-screen{
@@ -452,6 +468,7 @@ label{
     margin-top: 20px;
     width: 150px;
     height: 50px;
+    transition: 2s;
     background-color: white;
     color: blue;
     font-size: 15px;
@@ -460,6 +477,10 @@ label{
     justify-content: center;
     cursor: pointer;
     border: 1px solid black;
+}
+.but_now:hover{
+    background-color: blue;
+    color: white;
 }
 .admin_one{
   width: 30%;
@@ -489,7 +510,7 @@ label{
 }
 .linker{
     text-decoration: none;
-    color: blue;
+    color: black;
 
 }
 .user_one {
@@ -543,4 +564,21 @@ label{
 #doctor{
     font: bold;
     font-size: 20px;
+}
+.admin:hover{
+background-color: blue;
+color: white;
+transition: 3s;
+}
+
+.user:hover{
+background-color: blue;
+    color: white;
+    transition: 3s;
+}
+
+.doctor:hover{
+background-color: blue;
+    color: white;
+    transition: 3s;
 }
