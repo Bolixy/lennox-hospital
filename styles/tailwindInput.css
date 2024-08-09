@@ -51,6 +51,10 @@ tr:nth-child(even){
   @apply bg-gray-100 text-gray-600
 }
 
+.popFade{
+  animation: popFade 1s ease-in-out;
+}
+
 @keyframes leftFadeIn{
   0%{
     @apply ml-[-100px] opacity-0;
@@ -60,6 +64,12 @@ tr:nth-child(even){
 @keyframes upFadeIn{
   0%{
     @apply mt-[300px] opacity-0;
+  }
+}
+
+@keyframes popFade{
+  0%{
+    @apply mt-8 opacity-0
   }
 }
 

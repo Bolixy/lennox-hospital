@@ -1,0 +1,1 @@
+const BASE_URL = "https://health-management-system.onrender.com"

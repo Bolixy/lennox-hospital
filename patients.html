@@ -3,37 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patients Login Page</title>
+    <title>Patients Login</title>
+    <link rel="stylesheet" href="./styles/tailwindOutput.css">
     <link rel="stylesheet" href="./patients.css" />
     <script
       src="https://kit.fontawesome.com/e64772e577.js"
       crossorigin="anonymous"
-    ></script>
+    ></script>    
+    <script src="./scripts/general.js"></script>
   </head>
   <body>
     <div class="overall">
       <div class="patient_con">
-        <form action="">
+        <form onsubmit="handlePatientLogin(event)">
           <div class="label">
             <h1>Patients Login</h1>
+            <div id="feedbackBox" class="hidden popFade">
+              
+            </div>
             <p>
-              <marquee behavior="" direction=""
-                >enter your login details here!</marquee
+              <marquee draggable="true">Enter your login details here!</marquee
               >
             </p>
-            <label for="">Login iD</label>
-            <input type="text" />
-            <label for="">Password</label>
-            <input type="password" />
-            <button>
+            <label for="patientNo">Patient No</label>
+            <input type="number" id="patientNo" min="000001" max="999999" required/>
+            <label for="password">Password</label>
+            <input type="password" id="password" minlength="8" required />
+            <button id="patientLoginBtn">
               Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </button>
             <p>
-              To return to the home page <a href="./index.html">click here</a>
+              To return to the home page <a href="./">click here</a>
             </p>
           </div>
         </form>
       </div>
     </div>
+
+    <script src="./scripts/axios.min.js"></script>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>
