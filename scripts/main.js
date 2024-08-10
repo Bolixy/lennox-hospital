@@ -19,8 +19,22 @@ async function handlePatientLogin(e) {
     await axios.post(`${BASE_URL}/api/auth/patient/signin`, requestBody).then((res) => {
       const responseData = res.data;
 
-      feedbackBox.innerHTML = `<p class="bg-green-600 rounded-sm font-semibold text-gray-100 px-4 py-2 text-lg" >${responseData.message}</p>`
-      feedbackBox.classList.replace('hidden', 'block')
+      if (!responseData.error) {
+        // save token
+        localStorage.setItem('patientToken', responseData.data.token)
+
+        feedbackBox.innerHTML = `<p class="bg-green-600 rounded-sm font-semibold text-gray-100 px-4 py-2 text-lg" >${responseData.message}</p>`
+        feedbackBox.classList.replace('hidden', 'block')
+
+        setTimeout(() => {
+          window.location.href = './profile.html';
+        }, 2000)
+
+      } else {
+        feedbackBox.innerHTML = `<p class=" bg-red-600 font-semibold text-gray-100 px-4 py-2 text-lg" >${responseData.message}</p>`
+        feedbackBox.classList.replace('hidden', 'block')
+      }
+
 
     }).catch(err => {
       const errorResponse = err.response.data;

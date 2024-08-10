@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="./scripts/sessionCheck.js"></script>
+    <script>
+      checkPatient() // Checks if patient is logged in
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./styles/tailwindOutput.css">
     <link rel="stylesheet" href="./profile.css" />
 
     <script
       src="https://kit.fontawesome.com/e64772e577.js"
       crossorigin="anonymous"
     ></script>
+    <script src="./scripts/general.js"></script>
   </head>
   <body>
     <div class="overall">
@@ -17,7 +23,7 @@
         <h1 class="main">MAIN NAVIGATION</h1>
         <hr />
         <div class="b_nav">
-          <div class="nav">
+          <div class="nav space-y-3">
             <div class="one">
               <div class="one_one"><i class="fa-solid fa-house"></i></div>
               <div class="one_two">Patients Dashbaord</div>
@@ -42,11 +48,11 @@
       <div class="segment_two">
         <div class="upper">
           <h1 class="user">USER | DASHBOARD</h1>
-          <h1 class="user_two">User | Dashbaord</h1>
+          <h1 class="user_two mr-4">User | Dashboard</h1>
         </div>
         <div class="lower">
-          <div class="first">
-            <div class="smile"><i class="fa-regular fa-face-smile"></i></div>
+          <div class="first py-6">
+            <i class="fa-regular fa-face-smile smile"></i>
             <h3 class="talk">My Profile</h3>
             <a href="" class="update">Update Profile</a>
           </div>
