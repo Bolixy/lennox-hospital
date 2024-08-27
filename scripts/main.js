@@ -23,7 +23,7 @@ async function handlePatientLogin(e) {
       if (!responseData.error) {
 
         // Set token as cookie with expiration
-        document.cookie = `patientToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; path=/; secure=true; sameSite=strict`;
+        document.cookie = `patientToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; domain=bolixy.github.io; path=/lennox-hospital; secure=true; sameSite=strict`;
 
 
         feedbackBox.innerHTML = `<p class="bg-green-600 rounded-sm font-semibold text-gray-100 px-4 py-2 text-lg" >${responseData.message}</p>`
