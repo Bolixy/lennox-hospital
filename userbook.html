@@ -81,18 +81,44 @@
           </div>
          </div> -->
 
-         <div>
-          <form>
-            <label for="doctor">Select Doctor</label>
-            <select id="doctor" required>
-              <option selected disabled>Choose a doctor</option>
-              <option value="76876867876">Dr. Ademide Samuel</option>
-              <option value="76876867876">Dr. Olugbade Samuel</option>
-              <option value="76876867876">Dr. Cliton Samuel</option>
-              <option value="76876867876">Dr. Dash Bruce</option>
-              <option value="76876867876">Dr. Lennox Samuel</option>
-              <option value="76876867876">Dr. Camilite Samuel</option>
-            </select>
+         <div class="border border-gray-400 shadow-md px-3 py-2 font-mono m-auto w-[80%] mt-3 rounded-md mb-3">
+          <form onsubmit="handleAppointmentSchedule(event)">
+            
+            <div id="responseBox">
+              <!-- response box -->
+            </div>
+
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="doctor" class="text-xl font-normal">Select Doctor</label><br>
+                <select class="w-[100%] h-10 bg-[#e2e2e2]" id="doctor" name="doctorId" required>
+                  <option selected disabled value="">Choose a doctor</option>
+                </select>
+              </div>
+              
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="date" class="text-xl font-normal">Appointment Date</label><br>
+                <input type="date" class="w-[100%] h-10 bg-[#e2e2e2]" name="date" id="date" required>
+              </div>
+            </div>
+            
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="date" class="text-xl font-normal">Appointment Time</label><br>
+                <input type="time" class="w-[100%] h-10 bg-[#e2e2e2]" name="time" id="time" required>              
+              </div>
+
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="date" class="text-xl font-normal">Reason</label><br>
+                <textarea name="reason" class="w-[100%] h-10 bg-[#e2e2e2]" id="reason" required></textarea>       
+              </div>
+            </div>
+
+            <div class="max-sm:w-[100%] space-y-1 border mt-2 m-auto w-fit p-2 text-center bg-[#1d4777] text-white cursor-pointer hover:opacity-[.8]">
+              <input type="submit" value="Book Appointment">
+            </div>
+
+            
           </form>
          </div>
 
@@ -101,6 +127,8 @@
     </div>
     </div>
 
+    <script src="./scripts/axios.min.js"></script>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/fetchDoctors.js"></script>
   </body>
 </html>

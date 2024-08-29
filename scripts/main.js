@@ -23,7 +23,8 @@ async function handlePatientLogin(e) {
       if (!responseData.error) {
 
         // Set token as cookie with expiration
-        document.cookie = `patientToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; domain=bolixy.github.io; path=/lennox-hospital; secure=true; sameSite=strict`;
+        // document.cookie = `patientToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; domain=bolixy.github.io; path=/lennox-hospital; secure=true; sameSite=strict`;
+        document.cookie = `patientToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; path=/; secure=true; sameSite=strict`;
 
 
         feedbackBox.innerHTML = `<p class="bg-green-600 rounded-sm font-semibold text-gray-100 px-4 py-2 text-lg" >${responseData.message}</p>`
@@ -66,4 +67,41 @@ function patientLogout() {
 
 function deleteCookie(name, path = "/") {
   document.cookie = encodeURIComponent(name) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=" + path;
+}
+
+async function handleAppointmentSchedule(e) {
+  e.preventDefault();
+
+  const submitBtn = e.target[4]
+  submitBtn.value = 'Please wait...'
+
+  const doctorId = e.target[0].value;
+  const date = e.target[1].value;
+  const time = e.target[2].value;
+  const reason = e.target[3].value;
+
+  const docDetails = {
+    doctorId, date, time, reason
+  }
+  console.log(docDetails)
+  console.log(getCookie('patientToken'))
+  try {
+    await axios.post(`${BASE_URL}/api/patient/appointments/book`, docDetails, {
+      headers: {
+        Authorization: `Bearer ${getCookie('patientToken')}`
+      }
+    }).then((res) => {
+      console.log(res.data)
+      const responseData = res.data;
+
+      submitBtn.value = responseData.message;
+    }).catch(err => {
+      console.error(err.response.data)
+      submitBtn.value = err.response.data.message;
+    })
+
+  } catch (error) {
+    console.error(error.message)
+    submitBtn.value = error.message;
+  }
 }
