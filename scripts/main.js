@@ -105,3 +105,40 @@ async function handleAppointmentSchedule(e) {
     submitBtn.value = error.message;
   }
 }
+
+async function getAppoinmentHistory() {
+  const appointmentHistory = document.getElementById('appointmentHistory')
+  try {
+    await axios.get(`${BASE_URL}/api/patient/appointments/view`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('patientToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData.message)
+
+      if (!responseData.error) {
+        appointmentHistory.innerHTML = responseData.data.appointments.map((appointment) => {
+          return `
+          <div class="flex flex-col gap-2 bg-gray-100 rounded-md p-4">
+            <h3 class="text-lg font-semibold">Appointment Details</h3>            
+            <p class="text-sm">Doctor ID: ${appointment.doctorId}</p>
+            <p class="text-sm">Date: ${appointment.appointmentDate}</p>
+            <p class="text-sm">Time: ${appointment.appointmentTime}</p>
+            <p class="text-sm">Reason: ${appointment.appointmentReason}</p>
+            <p class="text-sm">Status: ${appointment.appointmentStatus}</p>
+          </div>
+          `
+        }).join('')
+      } else {
+        appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${responseData.message}</p>`
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${err.response.data.message}</p>`
+    })
+  } catch (error) {
+    console.error(error.message)
+    appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${error.message}</p>`
+  }
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="./scripts/sessionCheck.js"></script>
+  <script>
+    checkPatient()
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient | Appointment History</title>
+  <link rel="stylesheet" href="./styles/tailwindOutput.css">
+  <script src="./scripts/general.js"></script>
+</head>
+<body>
+  <main class="main-doc">
+    <div class="side-panel overflow-auto">
+
+      <input type="checkbox" class="hidden" id="toggle"> <!-- For Nav Toggle -->
+      <h3 class="uppercase md:mt-3 border-b-2 py-2 max-md:flex max-md:justify-between max-md:items-center max-md:px-10">
+        Main Navigation
+        <p class="md:hidden text-2xl">
+          <label for="toggle" class="open">&equiv;</label>
+          <label for="toggle" class="close hidden">&times;</label>
+        </p>
+      </h3>
+
+      <div class="bg-white max-md:hidden" id="nav">
+        <!-- Nav lists -->
+        <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl"><i class="fa-solid fa-house"></i></p> <p class="font-medium  text-xl hover:text-blue-500 text-[#686868] duration-200"><a href="./profile.html">Patient Dashboard</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl"><i class="fa-regular fa-pen-to-square"></i></p> <p class="font-medium text-xl hover:text-blue-500 text-[#686868] duration-200"><a href="./userbook.html">Book Appointment</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl"><i class="fa-solid fa-clock-rotate-left"></i></p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./appointment-history.html">Appointment History</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-900 duration-200"><a onclick="patientLogout()">Logout</a></p></div>
+      </div>
+    </div>
+
+    <div class="right-side">
+     <div class="bg-[#fafafa] w-[100%] h-[100px] border-b-2 flex items-center uppercase px-5 font-medium text-[30px] max-md:text-[25px] text-[#818181] max-md:justify-center">Doctor | Appointment History</div>
+
+     <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden" onclick="patientLogout()">Logout &rArr;</div>
+     
+     <!-- <div class="my-5 overflow-auto upFadeIn tableme">
+      <table class="w-[100%]">
+        <thead class="text-slate-400">
+          <th>#</th>       
+          <th>Specialization</th>       
+          <th>Consultancy</th>       
+          <th>Appointment Date / Time</th>       
+          <th>Appointment Creation Date</th>
+          <th>Current Status</th>       
+          <th>Action</th>       
+        </thead>
+        <tbody class="text-center uppercase font-medium">
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+          <tr>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+            <td>dysatd</td>
+          </tr>
+        </tbody>
+      </table>
+     </div> -->
+
+     <div id="appointmentHistory"></div>
+    </div>
+  </main>
+
+  <script src="./scripts/axios.min.js"></script>
+  <script src="./scripts/main.js"></script>
+  <script>
+    getAppoinmentHistory()
+  </script>
+</body>
+</html>
