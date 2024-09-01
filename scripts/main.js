@@ -142,3 +142,51 @@ async function getAppoinmentHistory() {
     appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${error.message}</p>`
   }
 }
+
+async function registerPatient(e) {
+  e.preventDefault();
+
+  try {
+    const submitBtn = document.getElementById('patientRegisterBtn')
+    submitBtn.innerText = 'Please wait...'
+
+    const formdata = new FormData(e.target)
+    const data = Object.fromEntries(formdata.entries())
+
+    // verify that both passwords match
+    if (data.password !== data.confirmPassword) {
+      alert('Passwords do not match')
+      submitBtn.innerText = 'Submit';
+      return;
+    }
+
+
+    // remove teh confirmPassword property from the data object
+    delete data.confirmPassword
+
+    await axios.post(`${BASE_URL}/api/auth/patient/signup`, data).then((res) => {
+      console.log(res.data)
+      const responseData = res.data;
+
+      if (!responseData.error) {
+        const pdDisplay = document.getElementById('pdDisplay');
+        const patientNoDisplay = document.getElementById('patientNoDisplay');
+        patientNoDisplay.innerText = responseData.data.patientNo;
+        pdDisplay.classList.remove('hidden');
+      }
+      alert(responseData.message);
+      submitBtn.innerText = 'Submit';
+      return;
+    }).catch(err => {
+      console.error(err.response.data)
+      alert(err.response.data.message);
+      submitBtn.innerText = 'Submit';
+      return;
+    })
+  } catch (error) {
+    console.error(error.message)
+    alert(error.message);
+    submitBtn.innerText = 'Submit';
+    return;
+  }
+}

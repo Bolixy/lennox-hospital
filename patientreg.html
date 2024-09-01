@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>registration page</title>
+    <link rel="stylesheet" href="./styles/tailwindOutput.css" />
     <link rel="stylesheet" href="./patientsreg.css" />
+    <script src="./scripts/general.js"></script>
   </head>
   <body>
     <div class="overall">
@@ -12,37 +14,42 @@
         <h1 class="head">Patient Registration</h1>
         <div class="reg">
           <div class="sign_up">
+            <p class="my-2 font-medium hidden" id="pdDisplay">Your Patient Number is: <span class="text-[#143a74] font-bold underline text-xl" id="patientNoDisplay"></span>. Please note it down as you will be using it for future login.</p>
             <h3>Sign Up</h3>
             <p>Enter your personal details below</p>
-            <form action="">
-              <input type="text" placeholder="Full Name" />
-              <input type="text" placeholder="Address" />
-              <input type="text" placeholder="City" />
-            </form>
+            <form onsubmit="registerPatient(event)">
+              <input type="text" placeholder="Full Name" name="fullName" required />
+              <input type="text" placeholder="Address" name="address" required />
+              <input type="text" placeholder="City" name="city" required />
+
             <h1 class="gender">Gender</h1>
             <div class="radio">
-              <input type="radio" />
-              <label for="">Female</label>
-              <input type="radio" />
-              <label for="">Male</label>
-            </div>
-            <p>Enter your account details below</p>
-            <form action="">
-              <input type="mail" placeholder="Email Address" />
-              <input type="password" placeholder="Password here" />
-              <input type="password" placeholder="Enter Password again" />
-            </form>
-            <div class="check">
-              <input type="checkbox" class="checkin" />
-              <label for="">I agree</label>
+              <input type="radio" id="female" name="gender" value="Female" required />
+              <label for="female">Female</label>
+              <input type="radio" id="male" name="gender" value="Male" required />
+              <label for="male">Male</label>
             </div>
 
-            <p>Already have an account? <a href="">Log-in</a></p>
-            <div class="but"><button>Submit</button></div>
+            <p>Enter your account details below</p>
+              <input type="email" placeholder="Email Address" name="email" required />
+              <input type="password" placeholder="Password here" name="password" />
+              <input type="password" placeholder="Enter Password again" name="confirmPassword" required />
+
+            <!-- <div class="check">
+              <input type="checkbox" class="checkin" />
+              <label for="">I agree</label>
+            </div> -->
+
+            <p>Already have an account? <a href="./patients.html">Log-in</a></p>
+            <div class="but"><button type="submit" id="patientRegisterBtn">Submit</button></div>
+          </form>
           </div>
-          <p class="lenox">@2019 Lennox. All rights reserved</p>
+          <p class="lenox">&copy;2024 HMS. All rights reserved</p>
         </div>
       </div>
     </div>
+
+    <script src="./scripts/axios.min.js"></script>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>
