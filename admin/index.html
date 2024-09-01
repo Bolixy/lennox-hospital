@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="../scripts/sessionCheck.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patients Login Page</title>
-    <link rel="stylesheet" href="./admin.css" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="../styles/tailwindOutput.css">
+    <link rel="stylesheet" href="../admin.css" />
     <script
       src="https://kit.fontawesome.com/e64772e577.js"
       crossorigin="anonymous"
     ></script>
+    <script src="../scripts/general.js"></script>
   </head>
   <body>
     <div class="overall">
       <div class="patient_con">
-        <form action="">
+        <form onsubmit="adminLogin(event)">
           <div class="label">
             <h1>Admin Login</h1>
             <p>
@@ -21,11 +24,11 @@
                 >enter your login details here!</marquee
               >
             </p>
-            <label for="">Login iD</label>
-            <input type="text" />
-            <label for="">Password</label>
-            <input type="password" />
-            <button>
+            <label for="username">Username</label>
+            <input type="text" name="username" required />
+            <label for="password">Password</label>
+            <input type="password" name="password" required />
+            <button type="submit">
               Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </button>
             <p>
@@ -35,5 +38,8 @@
         </form>
       </div>
     </div>
+
+    <script src="../scripts/axios.min.js"></script>
+    <script src="../scripts/main.js"></script>
   </body>
 </html>

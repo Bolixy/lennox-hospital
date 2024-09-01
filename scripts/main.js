@@ -260,6 +260,11 @@ async function getDoctorAppointment() {
           appointmentCard.querySelector('.appointment-status').textContent = appointment.appointmentStatus;
 
           const cancelButton = appointmentCard.querySelector('.cancel-appointment');
+          if (appointment.appointmentStatus === 'Cancelled') {
+            cancelButton.classList.add('hidden');
+            appointmentCard.querySelector('.appointment-status').classList.add('bg-red-100')
+            appointmentCard.querySelector('.appointment-status').classList.add('text-red-800')
+          }
           cancelButton.addEventListener('click', () => cancelAppointment(appointment.id));
 
           appointmentHistory.appendChild(appointmentCard);
@@ -275,5 +280,30 @@ async function getDoctorAppointment() {
   } catch (error) {
     console.error(error.message)
     appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${error.message}</p>`
+  }
+}
+
+async function cancelAppointment(appointmentId) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/doctor/appointments/${appointmentId}/cancel`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${getCookie('doctorToken')}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert('Appointment canceled successfully');
+      // Optionally, you can refresh the appointment list or update the UI
+      window.location.reload();
+      return
+    } else {
+      const error = await response.json();
+      alert(`Error canceling appointment: ${error.message}`);
+    }
+  } catch (error) {
+    console.error('Error canceling appointment:', error);
+    alert('An error occurred while canceling the appointment');
   }
 }
