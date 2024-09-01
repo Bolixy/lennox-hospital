@@ -1,4 +1,5 @@
 const token = getCookie('patientToken');
+const doctorToken = getCookie('doctorToken');
 const checkPatient = () => {
   if (!token) {
     window.location.href = './patients.html'
@@ -22,4 +23,16 @@ function getCookie(name) {
   }
 
   return null; // Return null if cookie is not found
+}
+
+const doctorCheck = () => {
+  if (!doctorToken) {
+    window.location.href = './signin.html'
+  }
+}
+
+const doctorLoginAuthCheck = () => {
+  if (doctorToken) {
+    window.location.href = './'
+  }
 }

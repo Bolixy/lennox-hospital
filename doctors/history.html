@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="../scripts/sessionCheck.js"></script>
+  <script>
+    doctorCheck()
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doctors | Appointment History</title>
   <link rel="stylesheet" href="../styles/tailwindOutput.css">
+  <script src="../scripts/general.js"></script>
 </head>
 <body>
   <main class="main-doc">
@@ -23,16 +28,16 @@
         <!-- Nav lists -->
          <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="./">Dashboard</a></p></div>
          <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="">Appointment History</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="">Logout</a></p></div>
+         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a onclick="doctorLogout()">Logout</a></p></div>
       </div>
     </div>
 
     <div class="right-side">
      <div class="bg-[#fafafa] w-[100%] h-[100px] border-b-2 flex items-center uppercase px-5 font-medium text-[30px] max-md:text-[25px] text-[#818181] max-md:justify-center">Doctor | Appointment History</div>
 
-     <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden">Logout &rArr;</div>
+     <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden" onclick="doctorLogout()">Logout &rArr;</div>
      
-     <div class="my-5 overflow-auto upFadeIn tableme">
+     <!-- <div class="my-5 overflow-auto upFadeIn tableme" id="docAppointmentHistory">
       <table class="w-[100%]">
         <thead class="text-slate-400">
           <th>#</th>       
@@ -307,8 +312,60 @@
           </tr>
         </tbody>
       </table>
-     </div>
+     </div> -->
+
+
+     <div class="bg-gray-100 min-h-screen py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Appointment History</h2>
+        <div id="docAppointmentHistory" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Appointment cards will be rendered here -->
+        </div>
+      </div>
+    </div>
+    
+    <template id="appointmentTemplate">
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="px-6 py-4">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-semibold text-gray-800">Appointment Details</h3>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold leading-4 bg-green-100 text-green-800">
+              <span class="appointment-status">
+            
+          </div>
+          <p class="text-gray-600 mb-2">
+            <span class="font-semibold">Patient ID:
+            <span class="patient-id">
+          </p>
+          <p class="text-gray-600 mb-2">
+            <span class="font-semibold">Date:
+            <span class="appointment-date">
+          </p>
+          <p class="text-gray-600 mb-2">
+            <span class="font-semibold">Time:
+            <span class="appointment-time">
+          </p>
+          <p class="text-gray-600 mb-2">
+            <span class="font-semibold">Reason:
+            <span class="appointment-reason">
+          </p>
+          <div class="mt-4">
+            <button class="cancel-appointment bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              Cancel Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+    
+    
     </div>
   </main>
+
+  <script src="../scripts/axios.min.js"></script>
+  <script src="../scripts/main.js"></script>
+  <script>
+    getDoctorAppointment()
+  </script>
 </body>
 </html>

@@ -65,6 +65,12 @@ function patientLogout() {
   window.location.reload();
 }
 
+function doctorLogout() {
+  deleteCookie('doctorToken')
+  // reload page
+  window.location.reload();
+}
+
 function deleteCookie(name, path = "/") {
   document.cookie = encodeURIComponent(name) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=" + path;
 }
@@ -188,5 +194,86 @@ async function registerPatient(e) {
     alert(error.message);
     submitBtn.innerText = 'Submit';
     return;
+  }
+}
+
+async function doctorLogin(e) {
+  e.preventDefault();
+  const doctorSigninBtn = document.getElementById('doctorSigninBtn')
+  doctorSigninBtn.innerText = 'Please wait...'
+
+  const formdata = new FormData(e.target)
+  const data = Object.fromEntries(formdata.entries())
+
+  try {
+    await axios.post(`${BASE_URL}/api/auth/doctor/signin`, data).then((res) => {
+      console.log(res.data)
+      const responseData = res.data;
+
+      if (!responseData.error) {
+
+        // Set token as cookie with expiration
+        document.cookie = `doctorToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; path=/; secure=true; sameSite=strict`;
+
+        window.location.href = './';
+      }
+      alert(responseData.message);
+      doctorSigninBtn.innerText = 'Login';
+      return;
+    }).catch(err => {
+      console.error(err.response.data)
+      alert(err.response.data.message);
+      doctorSigninBtn.innerText = 'Login';
+      return;
+    })
+  } catch (error) {
+    console.error(error.message)
+    alert(error.message);
+    doctorSigninBtn.innerText = 'Login';
+    return;
+  }
+}
+
+async function getDoctorAppointment() {
+  const appointmentHistory = document.getElementById('docAppointmentHistory')
+  const appointmentTemplate = document.getElementById('appointmentTemplate');
+  try {
+    await axios.get(`${BASE_URL}/api/doctor/appointmentHistory`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('doctorToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData)
+
+      if (!responseData.error) {
+
+        const appointments = responseData.data.appointments;
+
+        appointments.forEach(appointment => {
+          const appointmentCard = appointmentTemplate.content.cloneNode(true);
+
+          appointmentCard.querySelector('.patient-id').textContent = appointment.patientId;
+          appointmentCard.querySelector('.appointment-date').textContent = appointment.appointmentDate;
+          appointmentCard.querySelector('.appointment-time').textContent = appointment.appointmentTime;
+          appointmentCard.querySelector('.appointment-reason').textContent = appointment.appointmentReason;
+          appointmentCard.querySelector('.appointment-status').textContent = appointment.appointmentStatus;
+
+          const cancelButton = appointmentCard.querySelector('.cancel-appointment');
+          cancelButton.addEventListener('click', () => cancelAppointment(appointment.id));
+
+          appointmentHistory.appendChild(appointmentCard);
+        })
+
+      } else {
+        appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${responseData.message}</p>`
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${err.response.data.message}</p>`
+    })
+  } catch (error) {
+    console.error(error.message)
+    appointmentHistory.innerHTML = `<p class="text-lg font-semibold text-red-600">${error.message}</p>`
   }
 }
