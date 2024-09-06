@@ -1,5 +1,6 @@
 const token = getCookie('patientToken');
 const doctorToken = getCookie('doctorToken');
+const adminToken = getCookie('adminToken');
 const checkPatient = () => {
   if (!token) {
     window.location.href = './patients.html'
@@ -34,5 +35,17 @@ const doctorCheck = () => {
 const doctorLoginAuthCheck = () => {
   if (doctorToken) {
     window.location.href = './'
+  }
+}
+
+const adminCheck = () => {
+  if (!adminToken) {
+    window.location.href = `${SITE_URL}/admin`
+  }
+}
+
+const adminLoginAuthCheck = () => {
+  if (adminToken) {
+    window.location.href = './dashboard'
   }
 }

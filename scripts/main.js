@@ -71,6 +71,12 @@ function doctorLogout() {
   window.location.reload();
 }
 
+function adminLogout() {
+  deleteCookie('adminToken')
+  // reload page
+  window.location.reload();
+}
+
 function deleteCookie(name, path = "/") {
   document.cookie = encodeURIComponent(name) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=" + path;
 }
@@ -305,5 +311,116 @@ async function cancelAppointment(appointmentId) {
   } catch (error) {
     console.error('Error canceling appointment:', error);
     alert('An error occurred while canceling the appointment');
+  }
+}
+
+async function adminLogin(e) {
+  e.preventDefault()
+
+  const adminLoginBtn = document.getElementById('adminLoginBtn')
+  adminLoginBtn.innerText = 'Please wait...'
+
+  const formdata = new FormData(e.target)
+  const data = Object.fromEntries(formdata.entries())
+
+  try {
+    await axios.post(`${BASE_URL}/api/admin/signin`, data).then((res) => {
+      console.log(res.data)
+      const responseData = res.data;
+
+      if (!responseData.error) {
+
+        // Set token as cookie with expiration
+        document.cookie = `adminToken=${responseData.data.token}; expires=${new Date(Date.now() + 3600000).toUTCString()}; path=/; secure=true; sameSite=strict`;
+
+        window.location.href = './dashboard';
+      }
+      alert(responseData.message);
+      adminLoginBtn.innerText = 'Login';
+      return;
+    }).catch(err => {
+      console.error(err.response.data)
+      alert(err.response.data.message);
+      adminLoginBtn.innerText = 'Login';
+      return;
+    })
+  } catch (error) {
+    console.error(error.message)
+    adminLoginBtn.innerText = 'Login';
+    return;
+  }
+}
+
+async function getPatients() {
+  const patientDiv = document.getElementById('patientDiv')
+  const patientList = document.getElementById('patientList')
+  try {
+    await axios.get(`${BASE_URL}/api/admin/patients`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('adminToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData)
+
+      if (!responseData.error) {
+        const patients = responseData.data.patients;
+
+        patients.forEach(patient => {
+          patientList.innerHTML += `
+          <tr class="bg-white border-b">
+              <td class="px-4 py-2">${patient.fullName}</td>
+              <td class="px-4 py-2">${patient.address}</td>
+              <td class="px-4 py-2">${patient.gender}</td>
+              <td class="px-4 py-2">${patient.patientNo}</td>
+              <td class="px-4 py-2">${patient.regDate}</td>
+              <td class="px-4 py-2 flex justify-center">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="deletePatient('${patient.patientNo}')">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          `
+        })
+
+      } else {
+        patientDiv.innerHTML = `<p class="text-lg font-semibold text-red-600">${responseData.message}</p>`
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      patientDiv.innerHTML = `<p class="text-lg font-semibold text-red-600">${err.response.data.message}</p>`
+    })
+  } catch (error) {
+    console.error(error.message)
+    patientDiv.innerHTML = `<p class="text-lg font-semibold text-red-600">${error.message}</p>`
+  }
+}
+
+async function deletePatient(patientNo) {
+
+  const patientList = document.getElementById('patientList')
+  try {
+    await axios.delete(`${BASE_URL}/api/admin/patient/delete/${patientNo}`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('adminToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData)
+
+      if (!responseData.error) {
+        console.log(responseData.message);
+        patientList.innerHTML = "";
+        getPatients()
+        // window.location.reload();
+      } else {
+        alert(responseData.message);
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      alert(err.response.data.message);
+    })
+  } catch (error) {
+    console.error(error.message)
   }
 }

@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <script src="../scripts/sessionCheck.js"></script>
+    <script>
+      adminLoginAuthCheck()
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
@@ -28,7 +31,7 @@
             <input type="text" name="username" required />
             <label for="password">Password</label>
             <input type="password" name="password" required />
-            <button type="submit">
+            <button type="submit" id="adminLoginBtn">
               Login <i class="fa-solid fa-arrow-right-to-bracket"></i>
             </button>
             <p>

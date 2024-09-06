@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="../../scripts/general.js"></script>
   <script src="../../scripts/sessionCheck.js"></script>
   <script>
-    
+  adminCheck()    
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,9 +26,10 @@
 
       <div class="bg-white max-md:hidden" id="nav">
         <!-- Nav lists -->
-         <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./">Dashboard</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="./history.html">Appointment History</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a onclick="adminLogout()">Logout</a></p></div>
+        <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./">Dashboard</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="./patients/">Patient</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="./doctors/">Doctor</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a onclick="adminLogout()">Logout</a></p></div>
       </div>
     </div>
 
