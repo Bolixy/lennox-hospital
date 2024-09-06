@@ -8,7 +8,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin | Doctors Section</title>
+  <title>Admin | Doctor Section</title>
   <link rel="stylesheet" href="../../../styles/tailwindOutput.css">
 </head>
 <body>
@@ -26,10 +26,10 @@
 
       <div class="bg-white max-md:hidden" id="nav">
         <!-- Nav lists -->
-         <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="../">Dashboard</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="../patients/">Patient</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./">Doctor</a></p></div>
-         <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a onclick="adminLogout()">Logout</a></p></div>
+        <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="../">Dashboard</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="../patients/">Patient</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./">Doctor</a></p></div>
+        <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a onclick="adminLogout()">Logout</a></p></div>
       </div>
     </div>
 
@@ -38,21 +38,22 @@
 
      <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden" onclick="adminLogout()">Logout &rArr;</div>
 
-     <!-- <div class="container mx-auto py-8">
-      <h1 class="text-3xl font-bold mb-6">Patient List</h1>
-      <div class="overflow-x-auto" id="patientDiv">
+     <div class="container mx-auto py-8">
+      <h1 class="text-3xl font-bold mb-6">Doctor List</h1>
+      <div class="overflow-x-auto" id="doctorDiv">
         <table class="w-full table-auto">
           <thead>
             <tr class="bg-gray-800 text-white">
               <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Specialization</th>
+              <th class="px-4 py-2">Experience</th>
+              <th class="px-4 py-2">Qualification</th>
+              <th class="px-4 py-2">Phone</th>
               <th class="px-4 py-2">Address</th>
-              <th class="px-4 py-2">Gender</th>
-              <th class="px-4 py-2">Patient No</th>
-              <th class="px-4 py-2">Reg Date</th>
               <th class="px-4 py-2">Actions</th>
             </tr>
           </thead>
-          <tbody id="patientList"> -->
+          <tbody id="doctorList">
             <!-- Replace with your patient data -->
             <!-- <tr class="bg-white border-b">
               <td class="px-4 py-2">John Doe</td>
@@ -71,31 +72,18 @@
             </tr> -->
             <!-- 👆That's a sample of the template -->
             <!-- Add more patient rows here -->
-          <!-- </tbody>
+          </tbody>
         </table>
       </div>
-    </div> -->
-
-    <div class="flex justify-evenly items-center mx-3 my-2 sm:space-x-3 max-sm:block max-sm:space-y-4 mt-5 upFadeIn">
-      <div class="border border-gray-300 shadow-gray-600 hover:shadow-md duration-200 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
-        <i class="fa-circle bg-[#0079ff] text-[#f1f1f1]">fgy</i>
-        <h3 class="font-normal text-lg"></h3>Add Doctor</h3>
-        <p class="text-[#0079ff] font-medium"><a href="./add.html">ADD</a></p>
-      </div>
-
-      <div class="border border-gray-300 shadow-gray-600 hover:shadow-md duration-200 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
-        <i class="fa-circle bg-[#0079ff] text-[#f1f1f1]">war</i>
-        <h3 class="font-normal text-lg">View Doctor</h3>
-        <p class="text-[#0079ff] font-medium"><a href="./view.html">VIEW</a></p>
-      </div>
-     </div>
+    </div>
     </div>
   </main>
 
   <script src="../../../scripts/axios.min.js"></script>
   <script src="../../../scripts/main.js"></script>
+  <script src="../../../scripts/fetchDoctors.js"></script>
   <script>
-    getPatients()
+    fetchDoctorsForAdmin()
   </script>
 </body>
 </html>

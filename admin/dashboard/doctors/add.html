@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../../../scripts/sessionCheck.js"></script>
+    <script>
+      adminCheck() // Checks if admin is logged in
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Add Doctor</title>
+    <!-- <link rel="stylesheet" href="../../../userbook.css" /> -->
+     <link rel="stylesheet" href="../../../styles/tailwindOutput.css">
+    <link rel="stylesheet" href="../../../profile.css" />
+      <script
+      src="https://kit.fontawesome.com/e64772e577.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../../scripts/general.js"></script>
+  </head>
+  <body>
+    <div class="overall">
+ <!-- <div class="segment_two border border-red-600 h-fit">
+        <h1  class="head">USER |  BOOK APPOINTMENT</h1>
+        <div class="inter">
+            <div class="bord">    
+                <h1 class="header">Book Appointment</h1>
+            <form action="">
+                <label for="">Doctor Specification</label>
+                 <input type="text">
+                 <label for="">Doctors</label>
+            <input type="text">
+            <label for="">Date</label>
+            <input type="date">
+            <label for="">Time</label>
+            <input type="time">
+            <p class="eg">e.g 10:00pm</p>
+        </form>
+        <button>Submit</button>
+    </div>
+        
+        </div>
+      </div> -->
+
+      <main class="main-doc">
+        <div class="side-panel overflow-auto">
+    
+          <input type="checkbox" class="hidden" id="toggle"> <!-- For Nav Toggle -->
+          <h3 class="uppercase md:mt-3 border-b-2 py-2 max-md:flex max-md:justify-between max-md:items-center max-md:px-10">
+            Main Navigation
+            <p class="md:hidden text-2xl">
+              <label for="toggle" class="open">&equiv;</label>
+              <label for="toggle" class="close hidden">&times;</label>
+            </p>
+          </h3>
+    
+          <div class="bg-white max-md:hidden" id="nav">
+            <!-- Nav lists -->
+            <div class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">🏠</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="../">Dashboard</a></p></div>
+            <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a href="../patients/">Patient</a></p></div>
+            <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2"><p class="text-[#0079ff] text-xl">⏱</p> <p class="font-medium text-blue-500 text-xl hover:text-blue-900 duration-200"><a href="./">Doctor</a></p></div>
+            <div  class="space-x-3 flex items-center justify-start pr-4 py-3 border-b-2 md:hidden"><p class="text-[#0079ff] text-xl">📤</p> <p class="font-medium text-[#686868] text-xl hover:text-blue-500 duration-200"><a onclick="adminLogout()">Logout</a></p></div>
+          </div>
+        </div>
+    
+        <div class="right-side">
+         <div class="bg-[#fafafa] w-[100%] h-[100px] border-b-2 flex items-center uppercase px-5 font-medium text-[30px] max-md:text-[25px] text-[#818181] max-md:justify-center">Admin | Add Doctor</div>
+    
+         <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden" onclick="adminLogout()">Logout &rArr;</div>
+
+         <div class="border border-gray-400 shadow-md px-3 py-2 font-mono m-auto w-[80%] mt-3 rounded-md mb-3">
+          <form onsubmit="handleAddDoctor(event)">
+            
+            <div id="responseBox">
+              <!-- response box -->
+            </div>
+
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="name" class="text-xl font-normal">Doctor Name</label><br>
+                <input type="text" id="name" name="name" class="w-[100%] h-10 bg-[#e2e2e2]" required>
+              </div>
+              
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="email" class="text-xl font-normal">Doctor Email</label><br>
+                <input type="email" class="w-[100%] h-10 bg-[#e2e2e2]" name="email" id="email" required>
+              </div>
+            </div>
+            
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="specialization" class="text-xl font-normal">Specialization</label><br>
+                <input type="text" class="w-[100%] h-10 bg-[#e2e2e2]" name="specialization" id="specialization" required>              
+              </div>
+
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="experience" class="text-xl font-normal">Experience</label><br>
+                <input type="number" min="1" name="experience" class="w-[100%] h-10 bg-[#e2e2e2]" id="experience" required>      
+              </div>
+            </div>
+
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="qualification" class="text-xl font-normal">Qualification</label><br>
+                <input type="text" class="w-[100%] h-10 bg-[#e2e2e2]" name="qualification" id="qualification" required>              
+              </div>
+
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="phone" class="text-xl font-normal">Phone</label><br>
+                <input type="number" name="phone" class="w-[100%] h-10 bg-[#e2e2e2]" id="phone" required>      
+              </div>
+            </div>
+
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="address" class="text-xl font-normal">Address</label><br>
+                <input type="text" class="w-[100%] h-10 bg-[#e2e2e2]" name="address" id="address" required>              
+              </div>
+
+              <div class="w-[300px] max-sm:w-[100%] space-y-1">
+                <label for="password" class="text-xl font-normal">Password</label><br>
+                <input type="password" name="password" class="w-[100%] h-10 bg-[#e2e2e2]" id="password" required>      
+              </div>
+            </div>
+
+            <div class="max-sm:w-[100%] space-y-1 border mt-2 m-auto w-fit p-2 text-center bg-[#1d4777] text-white cursor-pointer hover:opacity-[.8]">
+              <input type="submit" id="addDoctorBtn" value="Register Doctor">
+            </div>
+
+            
+          </form>
+         </div>
+
+        </div>
+      </main>
+    </div>
+    </div>
+
+    <script src="../../../scripts/axios.min.js"></script>
+    <script src="../../../scripts/main.js"></script>
+  </body>
+</html>

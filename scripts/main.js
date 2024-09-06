@@ -424,3 +424,63 @@ async function deletePatient(patientNo) {
     console.error(error.message)
   }
 }
+
+async function handleAddDoctor(e) {
+  e.preventDefault();
+
+  const submitBtn = document.getElementById('addDoctorBtn')
+  submitBtn.value = 'Please wait...'
+
+  const formData = new FormData(e.target)
+  const doctorDetails = Object.fromEntries(formData.entries())
+
+
+  try {
+    await axios.post(`${BASE_URL}/api/admin/doctor/add`, doctorDetails, {
+      headers: {
+        Authorization: `Bearer ${getCookie('adminToken')}`
+      }
+    }).then((res) => {
+      console.log(res.data)
+      const responseData = res.data;
+
+      submitBtn.value = responseData.message;
+    }).catch(err => {
+      console.error(err.response.data)
+      submitBtn.value = err.response.data.message;
+    })
+
+  } catch (error) {
+    console.error(error.message)
+    submitBtn.value = error.message;
+  }
+}
+
+async function deleteDoctor(doctorNo) {
+
+  const doctorList = document.getElementById('doctorList')
+  try {
+    await axios.delete(`${BASE_URL}/api/admin/doctor/delete/${doctorNo}`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('adminToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData)
+
+      if (!responseData.error) {
+        console.log(responseData.message);
+        doctorList.innerHTML = "";
+        fetchDoctorsForAdmin()
+        // window.location.reload();
+      } else {
+        alert(responseData.message);
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      alert(err.response.data.message);
+    })
+  } catch (error) {
+    console.error(error.message)
+  }
+}
