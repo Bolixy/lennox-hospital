@@ -134,7 +134,8 @@ async function getAppoinmentHistory() {
           return `
           <div class="flex flex-col gap-2 bg-gray-100 rounded-md p-4">
             <h3 class="text-lg font-semibold">Appointment Details</h3>            
-            <p class="text-sm">Doctor ID: ${appointment.doctorId}</p>
+            <p class="text-sm">Doctor Name: ${appointment.Doctor.fullName}</p>
+            <p class="text-sm">Doctor Specialization: ${appointment.Doctor.specialization}</p>
             <p class="text-sm">Date: ${appointment.appointmentDate}</p>
             <p class="text-sm">Time: ${appointment.appointmentTime}</p>
             <p class="text-sm">Reason: ${appointment.appointmentReason}</p>
@@ -259,7 +260,9 @@ async function getDoctorAppointment() {
         appointments.forEach(appointment => {
           const appointmentCard = appointmentTemplate.content.cloneNode(true);
 
-          appointmentCard.querySelector('.patient-id').textContent = appointment.patientId;
+          appointmentCard.querySelector('.patient-id').textContent = appointment.Patient.fullName;
+          appointmentCard.querySelector('.patient-address').textContent = appointment.Patient.address;
+          appointmentCard.querySelector('.patient-gender').textContent = appointment.Patient.gender;
           appointmentCard.querySelector('.appointment-date').textContent = appointment.appointmentDate;
           appointmentCard.querySelector('.appointment-time').textContent = appointment.appointmentTime;
           appointmentCard.querySelector('.appointment-reason').textContent = appointment.appointmentReason;
