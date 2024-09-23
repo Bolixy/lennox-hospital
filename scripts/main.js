@@ -129,7 +129,7 @@ async function getAppoinmentHistory() {
       const responseData = res.data;
       console.log(responseData.message)
 
-      if (!responseData.error) {
+      if (!responseData.error && responseData.message !== 'No appointments found') {
         appointmentHistory.innerHTML = responseData.data.appointments.map((appointment) => {
           return `
           <div class="flex flex-col gap-2 bg-gray-100 rounded-md p-4">
@@ -253,7 +253,7 @@ async function getDoctorAppointment() {
       const responseData = res.data;
       console.log(responseData)
 
-      if (!responseData.error) {
+      if (!responseData.error && responseData.message !== 'No appointment found') {
 
         const appointments = responseData.data.appointments;
 
