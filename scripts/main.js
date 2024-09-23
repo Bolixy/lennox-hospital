@@ -487,3 +487,31 @@ async function deleteDoctor(doctorNo) {
     console.error(error.message)
   }
 }
+
+
+async function getPatientDetails() {
+  const patientNameBox = document.getElementById('patientNameBox')
+  try {
+    await axios.get(`${BASE_URL}/api/patient/records`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('patientToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData)
+
+      if (!responseData.error) {
+        patientNameBox.innerText = responseData.data.patient.fullName
+      } else {
+        patientNameBox.innerText = responseData.message
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      patientNameBox.innerText = err.response.data.message
+    })
+  } catch (error) {
+    console.error(error)
+    console.error(error.message)
+    patientNameBox.innerText = error.message
+  }
+}
