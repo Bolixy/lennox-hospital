@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doctors | Dashboard</title>
   <link rel="stylesheet" href="../styles/tailwindOutput.css">
+  <script src="../scripts/general.js"></script>
 </head>
 <body>
   <main class="main-doc">
@@ -36,6 +37,9 @@
 
      <div class="absolute  top-0 right-0 mr-11 mt-9 text-slate-600 font-medium cursor-pointer hover:text-red-400 max-md:hidden" onclick="doctorLogout()">Logout &rArr;</div>
 
+     <!-- Doctor Name Area -->
+      <div class="m-auto text-center w-fit text-2xl">Hi <span id="doctorNameBox" class="font-extralight"></span> 👋,</div>
+
      <div class="flex justify-evenly items-center mx-3 my-2 sm:space-x-3 max-sm:block max-sm:space-y-4 mt-5 upFadeIn">
       <div class="border border-gray-300 shadow-gray-600 hover:shadow-md duration-200 w-[45%] max-md:w-[100%] p-1 flex flex-col items-center justify-center py-10 max-sm:py-5 ">
         <i class="fa-circle bg-[#0079ff] text-[#f1f1f1]">fgy</i>
@@ -52,6 +56,10 @@
     </div>
   </main>
 
+  <script src="../scripts/axios.min.js"></script>
   <script src="../scripts/main.js"></script>
+  <script>
+    getDoctorDetails()
+  </script>
 </body>
 </html>

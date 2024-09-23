@@ -515,3 +515,30 @@ async function getPatientDetails() {
     patientNameBox.innerText = error.message
   }
 }
+
+async function getDoctorDetails() {
+  const doctorNameBox = document.getElementById('doctorNameBox')
+  try {
+    await axios.get(`${BASE_URL}/api/doctor/getById`, {
+      headers: {
+        Authorization: `Bearer ${getCookie('doctorToken')}`
+      }
+    }).then((res) => {
+      const responseData = res.data;
+      console.log(responseData)
+
+      if (!responseData.error) {
+        doctorNameBox.innerText = responseData.data.doctor.fullName
+      } else {
+        doctorNameBox.innerText = responseData.message
+      }
+    }).catch(err => {
+      console.error(err.response.data)
+      doctorNameBox.innerText = err.response.data.message
+    })
+  } catch (error) {
+    console.error(error)
+    console.error(error.message)
+    doctorNameBox.innerText = error.message
+  }
+}
